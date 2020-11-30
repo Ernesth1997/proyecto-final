@@ -1,0 +1,83 @@
+﻿<Window x:Class="ElectroSoftWPF.Cliente.winAdmCliente"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ElectroSoftWPF.Cliente"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+         TextElement.FontWeight="Regular"
+         TextElement.FontSize="13"
+         TextOptions.TextFormattingMode="Ideal"
+         TextOptions.TextRenderingMode="Auto"
+         Background="{DynamicResource MaterialDesignPaper}"
+         FontFamily="{DynamicResource MaterialDesignFont}"
+         Title="winAdmCliente" Height="400" Width="620" WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" BorderThickness="2" BorderBrush="#3F3E4E" Loaded="Window_Loaded">
+
+    <Grid Background="#082740" Margin="0,10,-4,-4">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="180*"/>
+            <ColumnDefinition Width="90*"/>
+            <ColumnDefinition Width="51*"/>
+            <ColumnDefinition Width="40*"/>
+            <ColumnDefinition Width="90*"/>
+            <ColumnDefinition Width="90*"/>
+
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+
+
+        <Grid Height="34" VerticalAlignment="Top"  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="6" Background="#2174BA" Margin="0,-14,0,0">
+            <Button x:Name="btnClose" VerticalAlignment="Top" HorizontalAlignment="Right" Width="35" Height="35" Foreground="White" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" Visibility="Visible" Click="btnClose_Click">
+                <materialDesign:PackIcon Kind="Close" Background="Red" Height="30" Width="30" VerticalAlignment="Center"/>
+            </Button>
+        </Grid>
+        <materialDesign:PackIcon Kind="UserBadge" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Right" Width="30" Height="30" Foreground="White"/>
+        <TextBlock Foreground="White" Grid.Row="1"  Grid.ColumnSpan="4" Text="REGISTRO DE CLIENTES" VerticalAlignment="Center" FontWeight="ExtraBlack" Margin="173,14,6,13"/>
+        <StackPanel    VerticalAlignment="Top" Orientation="Horizontal"  Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="5" >
+            <Label Content="Nit:"  Foreground="White"   Width="80"  Height="25" Margin="2"  />
+            <TextBox x:Name="txtNit" Width="100"   materialDesign:HintAssist.Hint="NIT/C.I."   Height="25" Margin="5" IsEnabled="False" FontWeight="Bold" PreviewTextInput="txtNit_PreviewTextInput" Foreground="#2174BA" />
+            <Label Content="RazonSocial:" Foreground="White"/>
+            <TextBox x:Name="txtRazonSocial"  Width="100"  materialDesign:HintAssist.Hint="Nombre/Apellido"  Height="25" TextChanged="txtRazonSocial_TextChanged" FontWeight="Bold" PreviewTextInput="txtRazonSocial_PreviewTextInput"  Margin="5" IsEnabled="False" Foreground="#2174BA"/>
+        </StackPanel>
+        <StackPanel  Background="Transparent"  Grid.Column="4"  Grid.Row="4" Grid.ColumnSpan="2" Grid.RowSpan="4" Margin="20 -10 0 0" >
+            <Button x:Name="btnGuardar" Content="Guardar" Margin="5" Click="btnGuardar_Click" IsEnabled="False" BorderBrush="#082740" Background="#2174BA"/>
+            <Button x:Name="btnCancelar" Content="Cancelar" Margin="5" Click="btnCancelar_Click" IsEnabled="True" BorderBrush="#082740" Background="#2174BA"/>
+            <Button x:Name="btnInsertar" Content="Insertar" Margin="5" Click="btnInsertar_Click" BorderBrush="#082740" Background="#2174BA"/>
+            <Button x:Name="btnModificar" Content="Modificar" Margin="5" Click="btnModificar_Click" BorderBrush="#082740" Background="#2174BA"/>
+            <Button x:Name="btnEliminar" Content="Eliminar" Margin="5" Click="btnEliminar_Click" BorderBrush="#082740" Background="#2174BA"/>
+
+        </StackPanel>
+        <Grid
+          Width="100" Grid.Column="3" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="3" Height="38" Margin="34.5,0,85,5">
+            <materialDesign:PackIcon Kind="Search" Foreground="White" HorizontalAlignment="Center"  Width="30" Height="30" RenderTransformOrigin="1.667,0.583" />
+            <TextBox x:Name="txtBuscar" Width="100"  materialDesign:HintAssist.Hint="Buscar"  Height="25" TextChanged="txtBuscar_TextChanged"   Margin="83,6,-103,13" IsEnabled="True" Foreground="#2174BA" />
+        </Grid>
+        <StackPanel  Grid.Column="0"  HorizontalAlignment="Center" VerticalAlignment="Center"  Grid.ColumnSpan="3" Grid.Row="7">
+            <Button Name="BtnSelecCliente"  Click="BtnSelecCliente_Click">Seleccionar Datos Cliente</Button>
+        </StackPanel>
+        <DataGrid x:Name="dgvDatos"  Background="Transparent" Foreground="White" BorderBrush="#2174BA" Grid.Column="0" Grid.Row="3"  Grid.ColumnSpan="4" Grid.RowSpan="4" IsReadOnly="True" CanUserAddRows="False" SelectionChanged="dgvDatos_SelectionChanged" >
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Margin" Value="10 10 10 10"/>
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="Foreground" Value="#2174BA"/>
+                    <Setter Property="FontSize" Value="12"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+        </DataGrid>
+    </Grid>
+
+</Window>

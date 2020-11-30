@@ -1,0 +1,305 @@
+﻿<Window x:Class="ElectroSoftWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ElectroSoftWPF"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="750" Width="1000"
+         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+         TextElement.FontWeight="Regular"
+         TextElement.FontSize="13"
+         TextOptions.TextFormattingMode="Ideal"
+         TextOptions.TextRenderingMode="Auto"
+         Background="{DynamicResource MaterialDesignPaper}"
+         FontFamily="{DynamicResource MaterialDesignFont}"
+         WindowStartupLocation="CenterScreen" WindowStyle="None"  Loaded="Window_Loaded" ResizeMode="NoResize" WindowState="Maximized">
+    <Window.Resources>
+        <Storyboard x:Key="MenuOpen">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="50"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0:0.5" Value="200"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="MenuCollapse">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="100"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0:0.5" Value="50"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="btnOpenMenu">
+            <BeginStoryboard Storyboard="{StaticResource MenuOpen}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="btnMenuCollapse">
+            <BeginStoryboard Storyboard="{StaticResource MenuCollapse}"/>
+        </EventTrigger>
+    </Window.Triggers>
+
+    <Grid Background="#082740">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition  Width="2.5*" />
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="3*" />
+            
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <Image Source="../Img/HomeMaiin.PNG" Stretch="Fill" Grid.Column="0"  Grid.Row="0"  Grid.ColumnSpan="4" Grid.RowSpan="4"  />
+            <StackPanel   Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal" Height="76" Background="Black" VerticalAlignment="Top">
+
+            <materialDesign:PackIcon Kind="AccountCircle" VerticalAlignment="Top" HorizontalAlignment="Center" Width="50" Height="50"  Foreground="Blue"  IsEnabled="False"/>
+            <Label Name="lblUsuario" Foreground="White" Height="40" Width="150"  FontWeight="ExtraBold"  FontSize="12" />
+
+            <TextBlock Text="BIENVENIDO(A) AL  SISTEMA  ELECTROSOFT" FontFamily="Adobe Fangsong" FontWeight="Bold" Foreground="White" FontSize="20" Margin="40,25,0,10"/>           
+             </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Column="3" VerticalAlignment="Top"  HorizontalAlignment="Right">
+            <Button x:Name="ButtonClose" VerticalAlignment="Center" HorizontalAlignment="Right"  Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Padding="0"   Background="Red" BorderBrush="{x:Null}"     Foreground="White"   Click="ButtonClose_Click" FontWeight="Bold" RenderTransformOrigin="0.486,1.257"  >
+                <materialDesign:PackIcon Kind="Close" />
+            </Button>
+        </StackPanel>
+        
+        <Grid x:Name="GridMain" Width="Auto" Height="Auto" VerticalAlignment="Center" HorizontalAlignment="Right" />
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"/>
+        <Grid x:Name="MainMenu"     Height="auto"  HorizontalAlignment="Left" >       
+        </Grid>
+        <Grid Background="#082740"  Grid.ColumnSpan="1" Grid.RowSpan="1">
+            <Image x:Name="ImgLogo" VerticalAlignment="Center"   Source="/ElectroSoftWPF;component/Img/LogoNuevo.PNG"/>
+            <Button x:Name="btnMenuCollapse" Foreground="Blue" VerticalAlignment="Top" Width="60" Height="60" HorizontalAlignment="Right" Background="{x:Null}" BorderBrush="{x:Null}" Visibility="Visible" Click="btnMenuCollapse_Click">
+                <materialDesign:PackIcon Kind="ArrowLeft" Foreground="White" Height="50" Width="45"/>
+            </Button>
+            <Button x:Name="btnOpenMenu" Foreground="Blue" VerticalAlignment="Top" Width="60" Height="60" HorizontalAlignment="Right" Background="{x:Null}" BorderBrush="{x:Null}" Visibility="Hidden" Click="btnOpenMenu_Click">
+                <materialDesign:PackIcon Kind="Menu" Foreground="White" />
+            </Button>
+
+        </Grid>
+        <Grid x:Name="GridMenu" Grid.Column="0"  Grid.Row="1"  Grid.RowSpan="5" Background="#082740" >
+            <StackPanel>
+                <ListView x:Name="lvwMenu" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="lvwMenu_SelectionChanged">
+                    <TreeView  >
+                        <TreeViewItem   Background="Black"  Header="Reportes"  Foreground="White"  IsExpanded="False" FontWeight="Bold" FontSize="16"  >
+                          
+                            <TreeViewItem Name="viewItemVentaDiaria">
+                                <TreeViewItem.Header>
+                                    <StackPanel    Orientation="Horizontal" VerticalAlignment="Top">
+                                        <Viewbox              Height="auto">
+                                            <materialDesign:PackIcon Kind="Money" Width="auto" Height="auto" VerticalAlignment="Center" Background="White" />
+                                        </Viewbox>
+                                        <Button x:Name="btnReportVenta" Background="Transparent" Content="Venta Diaria"   Width="AUTO" FontWeight="Bold"/>
+                                    </StackPanel>
+                                </TreeViewItem.Header>
+                            </TreeViewItem>
+                            <!--<TreeViewItem>
+                                <TreeViewItem.Header>
+                                    <StackPanel    Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right">
+                                        <Viewbox           Width="30"           Height="auto">
+                                            <materialDesign:PackIcon Kind="CustomerService" Width="auto" Height="auto" VerticalAlignment="Center" Margin="5"/>
+                                        </Viewbox>
+                                        <Button x:Name="BtnCompra" Content="Compra" Click="BtnCompra_Click" Margin="8 0 0 0"     Width="100" FontWeight="Bold">
+                                          
+                                        </Button>
+                                    </StackPanel>
+                                </TreeViewItem.Header>
+                            </TreeViewItem>-->
+                        </TreeViewItem>
+                    </TreeView>
+                    <TreeView MinWidth="100">
+                        <TreeViewItem  Background="Black"  Header="Usuario" Foreground="White" IsExpanded="False" FontWeight="Bold" FontSize="16">
+                            <TreeViewItem  Name="viewItemCliente">
+                                <TreeViewItem.Header>
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon Kind="AccountBoxes"  VerticalAlignment="Center" Width="25" Height="25" Background="White"/>
+                                        <Button Name="btnCliente" Width="145" BorderBrush="Transparent"   Background="#082740" Click="btnCliente_Click" Content="Cliente" VerticalAlignment="Center"    FontSize="15" FontFamily="Roboto" 
+                                    materialDesign:ButtonProgressAssist.Value="-1"
+                            materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                            materialDesign:ButtonProgressAssist.IsIndeterminate="True"/>
+                                    </StackPanel>
+                                </TreeViewItem.Header>
+                            </TreeViewItem>
+                            
+                            
+                            <TreeViewItem  Name="viewItemUsuario">
+                                <TreeViewItem.Header>                                   
+                                        <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon Kind="User"   Width="25" Height="25" Background="White"/>
+                                            <Button Name="btnUsuario" Width="145" Background="#082740" BorderBrush="Transparent"  Click="btnUsuario_Click" Content="Usuario" VerticalAlignment="Center" FontSize="15" Style="{StaticResource MaterialDesignRaisedButton}"
+                            materialDesign:ButtonProgressAssist.Value="-1"
+                            materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                            materialDesign:ButtonProgressAssist.IsIndeterminate="True"/>
+                                        </StackPanel>
+
+                                   
+                                </TreeViewItem.Header>
+                            </TreeViewItem>
+                            <TreeViewItem  Name="viewItemUpdatePassword">
+                                <TreeViewItem.Header>
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon Kind="PasswordReset"  Width="25" Height="25" Background="White"/>
+                                        <Button Name="UpdateUsuario" Width="145" Background="#082740" BorderBrush="Transparent"  Click="UpdateUsuario_Click" Content="Modificar Password" VerticalAlignment="Center" FontSize="12" Style="{StaticResource MaterialDesignRaisedButton}"
+                            materialDesign:ButtonProgressAssist.Value="-1"
+                            materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                            materialDesign:ButtonProgressAssist.IsIndeterminate="True" />
+                                    </StackPanel>
+                                </TreeViewItem.Header>
+                            </TreeViewItem>
+
+                            <TreeViewItem Name="viewItemProveedor">
+                                <TreeViewItem.Header>
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon Kind="Car3Plus" Width="25" Height="25" Background="White"/>
+                                        <Button  Name="btnProveedor" Width="145" BorderBrush="Transparent" Background="#082740"  Click="btnProveedor_Click"  Content="Proveedor" VerticalAlignment="Center" FontSize="15"
+                                     materialDesign:ButtonProgressAssist.Value="-1"
+                                    materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                                    materialDesign:ButtonProgressAssist.IsIndeterminate="True"/>
+                                    </StackPanel>
+                                </TreeViewItem.Header>
+                            </TreeViewItem>
+                        </TreeViewItem>
+                        
+                    </TreeView>
+
+                    <TreeView>
+                        <TreeViewItem Header="Producto" Foreground="White" IsExpanded="False">
+                        <TreeViewItem Name="viewItemCategoria">
+                            <TreeViewItem.Header>
+                                <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon Kind="Category"  VerticalAlignment="Center" Width="25" Height="25" Background="White"/>
+                                    <Button Name="btnCategoria" Width="145" BorderBrush="Transparent" Content="Categoria" Background="#082740" VerticalAlignment="Center" FontSize="15" Click="btnCategoria_Click"
+                                    materialDesign:ButtonProgressAssist.Value="-1"
+                                    materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                                    materialDesign:ButtonProgressAssist.IsIndeterminate="True"/>
+                                </StackPanel>
+                            </TreeViewItem.Header>
+
+                        </TreeViewItem>
+                        <TreeViewItem Name="viewItemRegistroProducto">
+                            <TreeViewItem.Header >
+                                <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon Kind="Package"  VerticalAlignment="Center" Width="25" Height="25" Background="White"/>
+                                    <Button Name="btnListaProducto" Width="154" BorderBrush="Transparent"  Background="#082740"  Click="btnListaProducto_Click" Content="Registro Producto" VerticalAlignment="Center" FontSize="15" 
+                                    materialDesign:ButtonProgressAssist.Value="-1"
+                                materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                                materialDesign:ButtonProgressAssist.IsIndeterminate="True"/>
+
+                                </StackPanel>
+                            </TreeViewItem.Header>
+                        </TreeViewItem>
+
+                        <TreeViewItem Name="viewItemListaProducto">
+                            <TreeViewItem.Header>
+                                <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon Kind="Package"  VerticalAlignment="Center" Width="25" Height="25" Background="White"/>
+                                    <Button Name="btnListProducto" Width="145" BorderBrush="Transparent" Click="btnListProducto_Click" Background="#082740"   Content="Lista Producto" VerticalAlignment="Center" FontSize="15" 
+                                    materialDesign:ButtonProgressAssist.Value="-1"
+                                materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                                materialDesign:ButtonProgressAssist.IsIndeterminate="True"/>
+                                </StackPanel>
+                            </TreeViewItem.Header>
+                        </TreeViewItem>
+                        </TreeViewItem>
+                    </TreeView>
+
+                    <TreeView  >
+                        <TreeViewItem  Header="Venta"  Foreground="White" IsExpanded="False">
+                            <TreeViewItem Name="viewItemventa">
+                                <TreeViewItem.Header>
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon Kind="Category"  Width="25" Height="25" Background="White"/>
+                                        <Button Name="btnVenta" BorderBrush="Transparent" Content="Venta" Click="btnVenta_Click"  Background="#082740"  FontSize="15"
+                                    materialDesign:ButtonProgressAssist.Value="-1"
+                                    materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                                    materialDesign:ButtonProgressAssist.IsIndeterminate="True"/>
+                                    </StackPanel>
+                                </TreeViewItem.Header>
+                            </TreeViewItem>
+                        </TreeViewItem>
+                    </TreeView>
+                    
+                    <!--<ListViewItem Foreground="White" Height="60" x:Name="ItemProducto">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Package" Margin="5" VerticalAlignment="Center" Width="25" Height="25"/>
+                            <Button Name="btnListaProducto" Width="145" BorderBrush="Transparent"  Background="#082740"  Click="btnListaProducto_Click" Content="Registro Producto" VerticalAlignment="Center" FontSize="15" 
+                                    materialDesign:ButtonProgressAssist.Value="-1"
+                                materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                                materialDesign:ButtonProgressAssist.IsIndeterminate="True"/>
+                        </StackPanel>
+                    </ListViewItem>-->
+                    <!--<ListViewItem Foreground="White" Height="60" x:Name="ItemListaProducto">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Package" Margin="5" VerticalAlignment="Center" Width="25" Height="25"/>
+                            <Button Name="btnListProducto" Width="145" BorderBrush="Transparent" Click="btnListProducto_Click" Background="#082740"   Content="Lista Producto" VerticalAlignment="Center" FontSize="15" 
+                                    materialDesign:ButtonProgressAssist.Value="-1"
+                                materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                                materialDesign:ButtonProgressAssist.IsIndeterminate="True"/>
+                        </StackPanel>
+                    </ListViewItem>-->
+                    <!--<ListViewItem Foreground="White" Height="60" x:Name="ItemCategoria" Selected="ItemCategoria_Selected">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Category" Margin="5" VerticalAlignment="Center" Width="25" Height="25"/>
+                            <Button Name="btnCategoria" Width="145" BorderBrush="Transparent" Content="Categoria" Background="#082740" VerticalAlignment="Center" FontSize="15" Click="btnCategoria_Click"
+                                    materialDesign:ButtonProgressAssist.Value="-1"
+                                    materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                                    materialDesign:ButtonProgressAssist.IsIndeterminate="True"/>
+                        </StackPanel>
+                    </ListViewItem>-->
+
+                    <!--<ListViewItem Foreground="White" Height="60" x:Name="ItemVenta" Selected="ItemCategoria_Selected">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Category" Margin="5" VerticalAlignment="Center" Width="25" Height="25"/>
+                            <Button Name="btnVenta" Width="145" BorderBrush="Transparent" Content="Venta" Click="btnVenta_Click" Background="#082740" VerticalAlignment="Center" FontSize="15"
+                                    materialDesign:ButtonProgressAssist.Value="-1"
+                                    materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                                    materialDesign:ButtonProgressAssist.IsIndeterminate="True"/>
+                        </StackPanel>
+                    </ListViewItem>-->
+                    <!--<ListViewItem Foreground="White" Height="60" x:Name="ItemCliente">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="AccountBoxes" Margin="5" VerticalAlignment="Center" Width="25" Height="25"/>
+                            <Button Name="btnCliente" Width="145" BorderBrush="Transparent"   Background="#082740" Click="btnCliente_Click" Content="Cliente" VerticalAlignment="Center"    FontSize="15" FontFamily="Roboto" 
+                                    materialDesign:ButtonProgressAssist.Value="-1"
+                            materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                            materialDesign:ButtonProgressAssist.IsIndeterminate="True"/>
+                        </StackPanel>
+                    </ListViewItem>-->
+                    <!--<ListViewItem Foreground="White" Height="60" x:Name="ItemProveedor">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Car3Plus" Margin="5" VerticalAlignment="Center" Width="25" Height="25"/>
+                            <Button  Name="btnProveedor" Width="145" BorderBrush="Transparent" Background="#082740"  Click="btnProveedor_Click"  Content="Proveedor" VerticalAlignment="Center" FontSize="15"
+                                     materialDesign:ButtonProgressAssist.Value="-1"
+                                    materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                                    materialDesign:ButtonProgressAssist.IsIndeterminate="True"/>
+                        </StackPanel>
+                    </ListViewItem>-->
+
+                    <!--<ListViewItem Foreground="White" Height="60" x:Name="ItemUsuario" Selected="ItemUsuario_Selected">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="User" Margin="5" VerticalAlignment="Center" Width="25" Height="25"/>
+                            <Button Name="btnUsuario" Width="145" Background="#082740" BorderBrush="Transparent"  Click="btnUsuario_Click" Content="Usuario" VerticalAlignment="Center" FontSize="15" Style="{StaticResource MaterialDesignRaisedButton}"
+                            materialDesign:ButtonProgressAssist.Value="-1"
+                            materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                            materialDesign:ButtonProgressAssist.IsIndeterminate="True"/>
+                        </StackPanel>
+                    </ListViewItem>-->
+                    <!--<ListViewItem Foreground="White" Height="60" x:Name="ItemUpdateUsuario" Selected="ItemUsuario_Selected">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="PasswordReset" Margin="5" VerticalAlignment="Center" Width="25" Height="25"/>
+                            <Button Name="UpdateUsuario" Width="145" Background="#082740" BorderBrush="Transparent"  Click="UpdateUsuario_Click" Content="Modificar Password" VerticalAlignment="Center" FontSize="12" Style="{StaticResource MaterialDesignRaisedButton}"
+                            materialDesign:ButtonProgressAssist.Value="-1"
+                            materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                            materialDesign:ButtonProgressAssist.IsIndeterminate="True" />
+                        </StackPanel>
+                    </ListViewItem>-->
+                    
+                </ListView>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

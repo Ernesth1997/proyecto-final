@@ -1,0 +1,26 @@
+﻿<Application x:Class="ElectroSoftWPF.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:ElectroSoftWPF"
+             StartupUri="Usuario\vwLogin.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Indigo.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <!--<LinearGradientBrush x:Key="GridBackGround" EndPoint="1,0.5" StartPoint="0,0.5">
+                <GradientStop Color="#FF000000" Offset="0"/>
+                <GradientStop Color="#FF121111" Offset="1"/>
+                <GradientStop Color="#FF605D5D" Offset="0.50"/>
+            </LinearGradientBrush>
+            <Style x:Key="HeaderStyle" TargetType ="{x:Type Primitives:DataGridColumnHeader}">
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+                <Setter Property="Background" Value="{StaticResource GridBackGround }" />
+                <Setter Property="Foreground" Value="Orange" />
+            </Style>-->
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

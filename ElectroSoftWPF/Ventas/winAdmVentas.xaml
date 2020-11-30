@@ -1,0 +1,104 @@
+﻿<Window x:Class="ElectroSoftWPF.Ventas.winAdmVentas"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ElectroSoftWPF.Ventas"
+        mc:Ignorable="d"
+        
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="winAdmVentas" Height="600" Width="700" Loaded="Window_Loaded" WindowStyle="None"  Activated="Window_Activated" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" BorderThickness="2" BorderBrush="#3F3E4E" >
+
+    <Grid Background="#082754"  Margin="0,-1,0,1">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1*"/>
+
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <StackPanel  Background="#291749" Grid.Column="0"   Grid.ColumnSpan="7"  Grid.RowSpan="1" Width="auto" Height="40"   VerticalAlignment="Top"   >
+            <Button x:Name="btnClose" VerticalAlignment="Top" HorizontalAlignment="Right" Width="35" Height="35" Foreground="White" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" Visibility="Visible" Click="btnClose_Click" Grid.Column="1">
+                <materialDesign:PackIcon Background="Red" Kind="Close" Foreground="White" Height="35" Width="30" VerticalAlignment="Center"/>
+            </Button>
+        </StackPanel>
+        <StackPanel Orientation="Vertical"  Margin="5"  Background="Transparent" Grid.Column="3"  Grid.Row="4"   Grid.RowSpan="2" Grid.ColumnSpan="1" >
+            <Button x:Name="btnAgregar"  Background="Black" BorderBrush="Aqua"   Click="btnAgregar_Click"  materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"    materialDesign:ButtonProgressAssist.IsIndeterminate="True"  Content="AGREGAR" Margin="0,5,0,5" Height="30"  Width="auto"  FontFamily="Lucida Bright" FontWeight="Bold" FontSize="13"/>
+            <Button x:Name="btnVender"  Height="30" BorderBrush="Aqua" Background="Black" Click="btnVender_Click" materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"    materialDesign:ButtonProgressAssist.IsIndeterminate="True"     Style="{StaticResource MaterialDesignRaisedDarkButton}" Margin="0,5,0,5" Width="auto"  Content="VENDER" ToolTip="Clic Para inseratr datos" FontFamily="Lucida Fax" FontSize="13" />
+            <Button x:Name="btnEliminar"  Background="Black" BorderBrush="Aqua" Click="btnEliminar_Click" materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"    materialDesign:ButtonProgressAssist.IsIndeterminate="True"                          Style="{StaticResource MaterialDesignRaisedDarkButton}"  Margin="0,5,0,5" Width="auto" Content="ELIMINAR" ToolTip="Clic Para inseratr Guardar"  FontFamily="Lucida Fax" FontSize="13" FontWeight="Bold" />
+            <Button x:Name="btnCancelar"  Background="Black" BorderBrush="Aqua" Click="btnCancelar_Click"  materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"    materialDesign:ButtonProgressAssist.IsIndeterminate="True"     Style="{StaticResource MaterialDesignRaisedDarkButton}"  Margin="0,5,0,5" Width="auto" Content="CANCELAR" ToolTip="Clic Para inseratr Guardar" FontFamily="Lucida Fax" FontWeight="Bold" FontSize="13"/>
+            <Button x:Name="btnUpdate"    Background="Black" BorderBrush="Aqua" Click="btnUpdate_Click"  materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"    materialDesign:ButtonProgressAssist.IsIndeterminate="True"     Style="{StaticResource MaterialDesignRaisedDarkButton}"   Width="auto" Content="MODIFICAR" ToolTip="Clic Para inseratr Guardar" FontFamily="Lucida Fax" FontWeight="Bold" FontSize="12"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal"   Margin="-10 0 65 0"   Background="Transparent" Grid.Column="0"  Grid.Row="1"   Grid.RowSpan="1" Grid.ColumnSpan="4" HorizontalAlignment="Right"  >
+            <Label  Content="DATOS DEL CLIENTE" Margin="0 0 0 0" Foreground="White" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="16"  Grid.Column="0"  Grid.Row="1"   Grid.RowSpan="2" Grid.ColumnSpan="5" FontWeight="Bold"/>
+            <TextBox  x:Name="txtIdCliente" Visibility="Hidden"  Text="id" VerticalAlignment="Center" IsEnabled="False"/>
+            <Label  Content="NIT/C.I." FontWeight="Bold" Foreground="White" FontFamily="Times New Roman"  VerticalAlignment="Center" Margin="5" HorizontalAlignment="Center" FontSize="16" />
+            <TextBox  x:Name="txtNit"    FontFamily="Times New Roman" Width="auto" Margin="5"   VerticalAlignment="Center" materialDesign:HintAssist.Hint="Ingrese el NI/C.I. " FontWeight="Bold" Foreground="White"/>
+            <Label  Content="Señor(es)" FontWeight="Bold" Foreground="White" FontFamily="Times New Roman"  VerticalAlignment="Center" HorizontalAlignment="Center"  FontSize="16"/>
+            <TextBox x:Name="txtRazonSocial" Foreground="White"  FontFamily="Times New Roman"   Width="auto" Margin="5"  materialDesign:HintAssist.Hint="Nombre Cliente"   VerticalAlignment="Center" FontWeight="Bold" />
+            <Button x:Name="btnBuscarCliente" Click="BtnBuscarCliente_Click"   materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"    materialDesign:ButtonProgressAssist.IsIndeterminate="True"      Margin="5" Background="Black"  FontWeight="Bold" FontFamily="Lucida Bright" >
+                <materialDesign:PackIcon Kind="Magnify" Background="#291749" Foreground="White" Width="50"  Height="32" VerticalAlignment="Center" FontWeight="Bold" FontFamily="Arial Black"/>
+            </Button>
+            <!--<Label x:Name="lblUsuario" Background="#291749" Height="30" Content="........" Width="160" Foreground="White"/>-->
+
+        </StackPanel>
+        <Label  Grid.Column="0" Grid.Row="2" Foreground="White" Content="DATOS DEL PRODUCTO"  VerticalAlignment="Top" FontWeight="Bold" Margin="10 0 0 0" FontSize="16" />
+        <StackPanel Orientation="Horizontal"    Background="Transparent" Grid.Column="0"  Grid.Row="2"   Grid.RowSpan="1" Grid.ColumnSpan="3" Margin="0 15 0 0">
+            <TextBox  x:Name="txtIdProducto"  materialDesign:HintAssist.Hint="id "   VerticalAlignment="Center"  Width="auto" IsEnabled="False" Visibility="Hidden" />
+            <Label  Content="Nomb. Producto: " Foreground="White" FontFamily="Times New Roman"  VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" />
+            <TextBox  x:Name="txtNombreProducto"   FontFamily="Times New Roman"  Foreground="White" materialDesign:HintAssist.Hint="Nombre del Producto "   VerticalAlignment="Center"  Width="auto" FontWeight="Bold" />
+            <Label x:Name="lblStock" Foreground="White" Content="Stock: "  FontFamily="Times New Roman"  VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" />
+            <TextBox   x:Name="txtStock"   FontFamily="Times New Roman"  Foreground="White" materialDesign:HintAssist.Hint="Stock "   VerticalAlignment="Center"  Width="auto" FontWeight="Bold"  />
+             </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="10 0 0 0"  VerticalAlignment="Top" Background="Transparent" Grid.Column="0"  Grid.Row="3"   Grid.RowSpan="1" Grid.ColumnSpan="3" >
+            <Label FontSize="16" FontWeight="Bold" FontFamily="Times New Roman" Foreground="White" Content="P.Venta: "  Margin="5" VerticalAlignment="Center"/>
+            <TextBox x:Name="txtPrecioVenta"   FontSize="14" Foreground="White"  FontFamily="Times New Roman"   Width="auto"  VerticalAlignment="Center"  materialDesign:HintAssist.Hint="Precio Unitario " FontWeight="Bold" />
+            <Label  Content="Cantidad: " Foreground="White" FontWeight="Bold" FontFamily="Times New Roman"  FontSize="16"  VerticalAlignment="Center"/>
+            <TextBox  x:Name="txtCantidad" Foreground="White" FontFamily="Times New Roman"  materialDesign:HintAssist.Hint="Cantidad Producto" VerticalAlignment="Center"  Width="auto" Margin="5"  FontWeight="Bold"/>
+            <Button x:Name="btnProducto" Margin="5 7 0 5"  materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"    materialDesign:ButtonProgressAssist.IsIndeterminate="True"  Background="Black"  Click="BtnProducto_Click"  FontFamily="Lucida Bright">
+                <materialDesign:PackIcon Kind="Magnify" Background="#291749" Foreground="White" Width="65"  Height="38" VerticalAlignment="Center" FontWeight="Bold" FontFamily="Arial Black"/>
+            </Button>
+        </StackPanel>
+        <StackPanel  Orientation="Horizontal"    Background="Transparent" Grid.Column="0"  Grid.Row="5"   Grid.RowSpan="2" Grid.ColumnSpan="3" Margin="0,265,0,8" >
+            <!--<Label  Content="Son:" FontSize="18"  VerticalAlignment="Center" FontWeight="Bold" FontFamily="Lucida Bright"/>
+            <TextBox x:Name="txtTotalDescuento" Foreground="Black" Background="#D6DBE9"   IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Center"  Width="300"   FontFamily="Franklin Gothic Heavy" FontWeight="Bold" Height="28" Margin="15,11,0,15" />-->
+            <Label  Content="TOTAL BS.:" Foreground="White" FontSize="18" Margin="3"  VerticalAlignment="Center" FontWeight="Bold" FontFamily="Lucida Bright"/>
+            <TextBox x:Name="txtTotalImporte"  Background="#D6DBE9"  Foreground="Black" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Center"  Width="95"  FontFamily="Franklin Gothic Heavy" FontWeight="Bold" Height="28" Margin="2" />
+        </StackPanel>
+        <DataGrid x:Name="dgvDatos"  VerticalGridLinesBrush="Black" BorderBrush="Aqua" GridLinesVisibility="All" Background="#302B2A"    Foreground="Black"  AutoGenerateColumns="False"  CanUserAddRows="False" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="3"  Grid.RowSpan="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn  x:Name="ColimnIdProducto" Width="2" Foreground="White" Binding="{Binding Path=idProducto}" FontWeight="Bold"/>
+                <DataGridTextColumn  x:Name="DgvColumDgvColumNmonre" Foreground="White" Header="NOMBRE DEL PRODUCTO"   Binding="{Binding Path=Nombre}" Width="auto" FontWeight="Bold" />
+                <DataGridTextColumn  x:Name="DgvColumCantidad" Foreground="White" Header="PRECIO VENTA" Width="auto"    Binding="{Binding Path=PreVenta}" FontWeight="Bold"/>
+                <DataGridTextColumn  x:Name="DgvColumprecio" Foreground="White" Header="CANTIDAD PRODUCTO" Width="auto"  Binding="{Binding Path=CantProducto}" FontWeight="Bold"/>
+                <DataGridTextColumn  x:Uid="DgvColumPrecionUnitario" Foreground="White" Header="IMPORTE" Width="auto" Binding="{Binding Path=importe}" FontWeight="Bold"/>
+            </DataGrid.Columns>
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Margin" Value="10 10 10 10"/>
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="FontSize" Value="13"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+        </DataGrid>
+    </Grid>
+</Window>

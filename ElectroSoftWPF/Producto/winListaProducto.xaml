@@ -1,0 +1,64 @@
+﻿<Window x:Class="ElectroSoftWPF.Producto.winListaProducto"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ElectroSoftWPF.Producto"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        
+        Title="winAdmProductos" Height="550" Width="810" WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" BorderThickness="2" BorderBrush="#3F3E4E" Loaded="Window_Loaded">
+
+    <Grid Background="#082754" Margin="0,0,-4,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="100*"/>
+
+
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3">
+            <Grid Height="51" VerticalAlignment="Top" Background="#0074D0" >
+                <Button x:Name="btnClose" VerticalAlignment="Top" HorizontalAlignment="Left" Width="35" Height="35" Foreground="White" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" Visibility="Visible" Click="btnClose_Click" Margin="775 0 0 0">
+                    <materialDesign:PackIcon Background="Red" Kind="Close" Foreground="White" Height="35" Width="30" VerticalAlignment="Center"/>
+                </Button>
+            </Grid>
+        </StackPanel>
+        <DataGrid x:Name="dgvDatos"   RowBackground="#212F46 " Foreground="White" AlternatingRowBackground="#212F46" Background="Transparent" BorderBrush="Aqua" Grid.Row="1" Grid.Column="0"  Grid.RowSpan="3" Grid.ColumnSpan="3" IsReadOnly="True" CanUserAddRows="False"  FontSize="12" SelectionChanged="dgvDatos_SelectionChanged">
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem x:Name="miSelectProducto" Header="Selecciona datos del producto que quiera vender" Click="miSelectProducto_Click" />
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Margin" Value="10 10 10 10"/>
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="FontSize" Value="13"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+        </DataGrid>
+        <StackPanel Grid.Column="1"  VerticalAlignment="Center" Grid.Row="4" >
+            <Button  Name="BtnSelecionarProducto"  Click="BtnSelecionarProducto_Click">Seleccionar un Producto</Button>
+        </StackPanel>
+
+
+    </Grid>
+</Window>

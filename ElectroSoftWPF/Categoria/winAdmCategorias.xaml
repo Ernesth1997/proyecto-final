@@ -1,0 +1,88 @@
+﻿<Window x:Class="ElectroSoftWPF.Categoria.winAdmCategorias"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ElectroSoftWPF.Categoria"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+         TextElement.FontWeight="Regular"
+         TextElement.FontSize="13"
+         TextOptions.TextFormattingMode="Ideal"
+         TextOptions.TextRenderingMode="Auto"
+         Background="{DynamicResource MaterialDesignPaper}"
+         FontFamily="{DynamicResource MaterialDesignFont}"
+         Title="winAdmCategoria" Height="400" Width="500" WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" BorderThickness="2" BorderBrush="#3F3E4E" Loaded="Window_Loaded">
+    <Grid Background="#223045" Margin="0,-1,0,1">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="180*"/>
+            <ColumnDefinition Width="90*"/>
+            <ColumnDefinition Width="51*"/>
+            <ColumnDefinition Width="40*"/>
+            <ColumnDefinition Width="90*"/>
+            <ColumnDefinition Width="90*"/>
+
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+
+        <Grid Background="#281E5D" Grid.Column="0" Grid.Row="0" Grid.RowSpan="1" Grid.ColumnSpan="6" Margin="0,0,-0.159,10">
+            <Button x:Name="btnClose" VerticalAlignment="Top" HorizontalAlignment="Right" Width="35" Height="35" Foreground="White" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" Visibility="Visible" Click="btnClose_Click">
+                <materialDesign:PackIcon Kind="Close" Foreground="White" Background="Red" Height="30" Width="30" VerticalAlignment="Center"/>
+            </Button>
+        </Grid>
+
+        <StackPanel Grid.Column="1" Grid.Row="1" Grid.RowSpan="1" Grid.ColumnSpan="4" Width="250" Margin="-10 0 0 0">
+            <TextBlock Foreground="White" Text="ADMINISTRAR CATEGORIAS"   FontWeight="ExtraBlack" Margin="5,14,15,0"/>
+            <materialDesign:PackIcon Kind="Category"  HorizontalAlignment="Right" Width="24" Height="24" Foreground="White" Margin="0,-22,32,0"/>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="6" Margin="0,7,0,10" Grid.RowSpan="2" Width="461" >
+            <Label Content="Nombre:" Foreground="AliceBlue" />
+            <!--<ComboBox x:Name="cbxCategoria" Margin="90 -20 200 0"  Background="#223045" Width="297"  materialDesign:HintAssist.Hint="Seleccione un Nombre" Foreground="Aqua" FontSize="14"   IsEnabled="False" RenderTransformOrigin="0.519,0.483">
+                <ComboBoxItem Background="#223045" BorderBrush="Transparent" Content="Acrol"/>
+                <ComboBoxItem Background="#223045" BorderBrush="Transparent" Content="Cielo Flex"/>
+                <ComboBoxItem Background="#223045" BorderBrush="Transparent" Content="Conduit"/>
+                <ComboBoxItem Background="#223045" BorderBrush="Transparent" Content="Equimet"/>
+                <ComboBoxItem Background="#223045" BorderBrush="Transparent" Content="Fatra"/>
+                <ComboBoxItem Background="#223045" BorderBrush="Transparent" Content="Ferrulain"/>
+                <ComboBoxItem Background="#223045" BorderBrush="Transparent" Content="Femco Lux"/>
+                <ComboBoxItem Background="#223045" BorderBrush="Transparent" Content="Funart"/>
+                <ComboBoxItem Background="#223045" BorderBrush="Transparent" Content="Mecano"/>
+                <ComboBoxItem Background="#223045" BorderBrush="Transparent" Content="Locker"/>
+                <ComboBoxItem Background="#223045" BorderBrush="Transparent" Content="Panelec"/>
+            </ComboBox>-->
+            <TextBox x:Name="txtCategoria" IsEnabled="False" VerticalAlignment="Top" materialDesign:HintAssist.Hint="Nombre de Categoria" Width="258"   Height="25" Margin="30 -25 5 0" Foreground="Aquamarine" PreviewTextInput="txtCategoria_PreviewTextInput"/>
+            <!--<TextBox x:Name="txtNombre"  IsEnabled="False" VerticalAlignment="Top" materialDesign:HintAssist.Hint="NIT/C.I." Width="150"   Height="25" Margin="5" Foreground="Aquamarine" PreviewTextInput="txtNombre_PreviewTextInput"/>-->
+            <Label Content="Descripcion:" Foreground="AliceBlue" Margin="0 16 0 0"/>
+            <TextBox x:Name="txtDescripcion" IsEnabled="False" VerticalAlignment="Top" materialDesign:HintAssist.Hint="Descripcion" Width="258"   Height="25" Margin="30 -25 5 0" Foreground="Aquamarine" PreviewTextInput="txtDescripcion_PreviewTextInput"/>
+        </StackPanel>
+        <StackPanel  Orientation="Horizontal" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="6">
+            <Button x:Name="btnGuardar" Content="Guardar" Margin="5" Click="btnGuardar_Click" IsEnabled="False" BorderBrush="Aqua" Background="#281E5D"/>
+            <Button x:Name="btnCancelar" Content="Cancelar" Margin="5" Click="btnCancelar_Click" IsEnabled="True" BorderBrush="Aqua" Background="#281E5D"/>
+            <Button x:Name="btnInsertar" Content="Insertar" Margin="5" Click="btnInsertar_Click" BorderBrush="Aqua" Background="#281E5D"/>
+            <Button x:Name="btnModificar" Content="Modificar" Margin="5" Click="btnModificar_Click" BorderBrush="Aqua" Background="#281E5D"/>
+            <Button x:Name="btnEliminar" Content="Eliminar" Margin="5" Click="btnEliminar_Click" BorderBrush="Aqua" Background="#281E5D"/>
+        </StackPanel>
+        <DataGrid x:Name="dgvDatos" BorderThickness="0" Background="Transparent" FontStyle="Normal" Foreground="White" BorderBrush="Aqua" Width="480" Grid.Column="0" Grid.Row="5" Grid.RowSpan="6" Grid.ColumnSpan="6" IsReadOnly="True" CanUserAddRows="False" SelectionChanged="dgvDatos_SelectionChanged">
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Margin" Value="10 10 10 10"/>
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="FontSize" Value="12"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+        </DataGrid>
+    </Grid>
+</Window>
